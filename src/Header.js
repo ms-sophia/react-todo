@@ -52,7 +52,6 @@ const Header = ({ title }) => {
   return (
     <header>
       <h1>{title}</h1>
-    
       <h3>{dateToday()}</h3>
     </header>
   );

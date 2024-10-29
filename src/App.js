@@ -7,9 +7,10 @@ import Footer from './Footer';
 function App() {
   return (
     <div className='App'>
+
       <Header title="Today's Tasks"/>
       <Content/>
-      <Footer />
+      <Footer/>
     </div>
   );
 }

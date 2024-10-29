@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import { FaXmark } from "react-icons/fa6";
+import "./index.css";
+
 const Content = () => {
   const [tasks, setTasks] = useState([
     {
       id: 1,
       checked: false,
-      text: "study",
+      text: "task1",
     },
     {
       id: 2,
       checked: false,
-      text: "code",
+      text: "task2",
     },
     {
       id: 3,
       checked: false,
-      text: "cook",
+      text: "task3",
     },
   ]);
-  const [text, setText] = useState("text");
+  const [text, setText] = useState("");
 
   const checkTask = (id) => {
     const listTasks = tasks.map((task) =>
@@ -42,32 +44,13 @@ const Content = () => {
     setText("");
   };
 
-  const resetTask = () => {
-    const resetTasks = [
-      {
-        id: 1,
-        checked: false,
-        text: "task#1",
-      },
-      {
-        id: 2,
-        checked: false,
-        text: "task#2",
-      },
-      {
-        id: 3,
-        checked: false,
-        text: "task#3",
-      },
-    ];
-    setTasks(resetTasks);
-  };
-
   return (
     <main>
       <input
+        className="addTaskInput"
         type="text"
         value={text}
+        placeholder="Add a task..."
         onChange={(e) => setText(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
@@ -78,14 +61,15 @@ const Content = () => {
       {tasks.length ? (
         <ul>
           {tasks.map((task) => (
-            <li className="task" key={task.id}>
+            <li className="taskList" key={task.id}>
               <input
                 type="checkbox"
                 onChange={() => checkTask(task.id)}
                 checked={task.checked}
               />
               <label
-                style={task.checked ? { textDecoration: "line-through" } : null}
+                className="taskLabel"
+                style={task.checked ? {color:'gray' } : null}
                 onDoubleClick={() => checkTask(task.id)}
               >
                 {task.text}
@@ -97,7 +81,6 @@ const Content = () => {
               />
             </li>
           ))}
-          <button onClick={() => resetTask()}>Reset</button>
         </ul>
       ) : (
         <p style={{ marginTop: "2rem" }}>Nothing to do</p>
